@@ -1,0 +1,7 @@
+choose hero, move to attack box
+choose opponent, move to defend box
+make sure the stats of the chosen heros are sent to attacker and defender, respectivly.
+when attack button is clicked attack defender
+the defender will counter attack
+when defender dies, the next opponent in queue will take defense.
+when all enimies are defeated run a win screen

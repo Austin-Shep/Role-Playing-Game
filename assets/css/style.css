@@ -1,0 +1,8 @@
+.character{
+    display: inline-block;
+    border: 2px outset black;
+}
+.stats{
+    text-align: center;
+    margin-top: 0;
+}
