@@ -1,4 +1,4 @@
-//variables 
+//variables ============================================
 let attacker = {};
 let defender = {};
 let wins = 0;
@@ -6,13 +6,25 @@ let isAttackerSelected = false;
 let isBattling = false;
 let attackerHP ='';
 let defendHP ='';
+//clean slate============================================
+initialize = () =>{
+    attacker = [];
+    defender = [];
+    wins = 0;
+    isBattling = false;
+    isAttackerSelected = false;
+    rules();
+};
+//puts current health on the screen======================
+healthRewrite = () => {
+    $('#gHp').text('HP: ' + Grimgore.hp);
+    $('#sHp').text('HP: ' + Shatter.hp);
+    $('#mHp').text('HP: ' + Mirimoto.hp);
+    $('#hHp').text('HP: ' + Ham.hp);
+}
+healthRewrite();
 
-$('#gHp').text('HP: ' +Grimgore.hp)
-$('#sHp').text('HP: ' +Shatter.hp)
-$('#mHp').text('HP: ' +Mirimoto.hp)
-$('#hHp').text('HP: ' +Ham.hp)
-
-//funtion used to select the opponent
+//funtion used to select the opponent=====================
 defenderSelect = () =>{
     if($('#defend').find('#grimgore').length){
         console.log('Grimgore')
@@ -44,34 +56,53 @@ defenderSelect = () =>{
     }   
 }
 
-//function to determin death states for both char
+charDeath = () =>{
+    if(attacker.hp <= 0){
+        alert('game over')
+        initialize();
+    }
+    else{
+        return false;
+    }
+}
+
+//function to determin death states for both char=========
 deathAction = () =>{
     if (defender.hp > 0){
         return false
-    }else if(attacker.hp <= 0){
-        alert('game over')
     }
-    else if (wins === 3){
-        alert('congradulations champion')
-
-    }else{
+    else{
         $($('#defend').find('.character')).detach()
         defender = [];
         isBattling = false;
         wins++;
-        alert('choose your next opponent')
-    }
+        if (wins === 3){
+            alert('congradulations champion');
+        }else{
+            alert('choose your next opponent');
+        };
+    };
+};
+
+//function for attack action===============================
+attackAction = () =>{
+    defender.hp -= attacker.attackPower;   
+    $('#moveResult').html('You hit ' + defender.name + ' for ' + attacker.attackPower + ' points of damage and suffer ' + defender.counterAttackPower + ' points of damage!');
+    attacker.attackPower += 20;
+}
+//script for the opponents attack==========================
+counterAttackAction = () =>{
+    attacker.hp -= defender.counterAttackPower;   
 }
 
-//function for attack action
-attackAction = () =>{
-    defender.hp -= attacker.attackPower;
-    attacker.hp -= defender.counterAttackPower;
-    attacker.attackPower += 10;
-    $('#moveResult').html('You hit ' + defender.name + ' for ' + attacker.attackPower + ' points of damage and suffer ' + defender.counterAttackPower + ' points of damage! That has GOT to Hurt')
-    deathAction();
-    
-
+rules = () =>{
+    if(isBattling){
+        $('#choose').hide(); 
+        $('#rules').hide()     
+    }else{
+        $('#choose').show();
+        $('#rules').show();
+    }
 }
 
 //event for selecting attacker and defender(nested function)
@@ -86,6 +117,7 @@ $('.character').on('click', function(){
         defenderSelect();
         isBattling = true;
         console.log(defender);
+        rules();
     }
     //attacker select
     else{
@@ -95,29 +127,21 @@ $('.character').on('click', function(){
             if($('#attack').find('#grimgore').length){
                 console.log('Grimgore')
                 attacker = Grimgore;
-            //  attacker.attackPower = Grimgore.attackPower;
-            //  attacker.hp = Grimgore.hp;
                 attackerHP = attacker.hp;
             }
             else if($('#attack').find('#shatter').length){
                console.log('shatter')
                 attacker = Shatter;
-            //  attacker.attackPower = Shatter.attackPower;
-            //  attacker.hp = Shatter.hp;
                 attackerHP = attacker.hp;
             }      
             else if($('#attack').find('#mirimoto').length){
                console.log('mirimoto')
-               attacker = Mirimoto
-            // attacker.attackPower = Mirimoto.attackPower;
-            // attacker.hp = Mirimoto.hp;
+                attacker = Mirimoto
                 attackerHP = attacker.hp;
             }   
             else if($('#attack').find('#ham').length){
                console.log('ham')
-               attacker = Ham;
-            // attacker.attackPower = Ham.attackPower;
-            // attacker.hp = Ham.hp;
+                attacker = Ham;
                 attackerHP = attacker.hp;
             }   
 
@@ -126,14 +150,23 @@ $('.character').on('click', function(){
     }
 });
 
+
+
 //attack event listener
 $('#attackButton').on('click', function(){
     if(isBattling === false){
         return false;
     }
     else{
-        attackAction();
+        attackAction();       
+        deathAction();
+        if(isBattling === true){
+        counterAttackAction();
+        }
+        healthRewrite();
         console.log('attack');
     }
+    charDeath();
 });
+
 

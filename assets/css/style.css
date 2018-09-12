@@ -1,8 +1,48 @@
 .character{
     display: inline-block;
     border: 2px outset black;
+    background-color: dimgrey;
 }
+
 .stats{
     text-align: center;
     margin-top: 0;
+}
+.character img{
+    height: 160px;
+    width: 175px;
+}
+body{
+    background-image: url(../images/bg.jpeg);
+}
+.barracks{
+    background-color: rgba(210, 193, 193, .5);
+    height: 315px;
+    
+}
+#fightbox{
+    display: inline-block;
+    position: fixed;
+}
+#defend{
+    position: absolute;
+    margin-right: 25%;
+    right: 0;
+    margin-top: -14.35%;
+}
+#attack{
+    margin-left: 25%;
+}
+#moveSelect{
+    margin-left: 47%
+}
+#moveResult{
+    margin-left: 35%;
+    background-color:  rgba(210, 193, 193, .5);
+    padding: 2%;
+    display: inline-block;
+    content: "";
+    clear: both;
+    display: table;
+    
 }
