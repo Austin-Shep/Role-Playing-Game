@@ -2,44 +2,67 @@
     display: inline-block;
     border: 2px outset black;
     background-color: dimgrey;
-}
+    height: 175px;
+    border-radius: 2%;
+    margin: auto 2.4%;
 
+}
 .stats{
     text-align: center;
     margin-top: 0;
 }
-.character img{
-    height: 160px;
-    width: 175px;
+.hp{
+    margin: -2px auto;
 }
+.character img{
+    padding: 5px 5px auto 5px;
+    height: 155px;
+    width: 175px;
+
+}
+
 body{
     background-image: url(../images/bg.jpeg);
 }
 .barracks{
     background-color: rgba(210, 193, 193, .5);
-    height: 315px;
+    height: 350px;
+    text-align: center;
+    margin: auto 10%;
     
+}
+hr{
+    margin: 1% 365px;
 }
 #fightbox{
     display: inline-block;
-    position: fixed;
+    /* position: fixed; */
 }
 #defend{
     position: absolute;
     margin-right: 25%;
     right: 0;
-    margin-top: -14.35%;
+    margin-top: -11.8%;
 }
 #attack{
     margin-left: 25%;
 }
 #moveSelect{
-    margin-left: 47%
+    margin-left: 48%
+}
+#attackButton{
+    height: 45px;
+    width: 75px;
+}#attackButton:active{
+    border: inset;
+    height: 44px;
+    width: 74px;
 }
 #moveResult{
-    margin-left: 35%;
+    margin-left: 32.5%;
+    width:490px;
     background-color:  rgba(210, 193, 193, .5);
-    padding: 2%;
+    padding: 1%;
     display: inline-block;
     content: "";
     clear: both;

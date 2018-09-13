@@ -17,7 +17,7 @@ initialize = () =>{
 };
 //puts current health on the screen======================
 healthRewrite = () => {
-    $('#gHp').text('HP: ' + Grimgore.hp);
+    $('#siHp').text('HP: ' + Sirane.hp);
     $('#sHp').text('HP: ' + Shatter.hp);
     $('#mHp').text('HP: ' + Mirimoto.hp);
     $('#hHp').text('HP: ' + Ham.hp);
@@ -26,34 +26,22 @@ healthRewrite();
 
 //funtion used to select the opponent=====================
 defenderSelect = () =>{
-    if($('#defend').find('#grimgore').length){
-        console.log('Grimgore')
-        defender = Grimgore;
-        // defender.name = Grimgore.name;
-        // defender.counterAttackPower = 50;
-        // defender.hp = 100;
+    if($('#defend').find('#sirane').length){
+        console.log('Sirane')
+        defender = Sirane;
     }
     else if($('#defend').find('#shatter').length){
        console.log('shatter')
        defender = Shatter;
-    //    defender.name = Shatter.name;
-    //    defender.counterAttackPower = 35;
-    //    defender.hp = 130;
     }   
     else if($('#defend').find('#mirimoto').length){
        console.log('mirimoto')
        defender = Mirimoto;
-    //    defender.name = Mirimoto.name;
-    //    defender.counterAttackPower = 45;
-    //    defender.hp = 145;
     }   
     else if($('#defend').find('#ham').length){
        console.log('ham')
        defender = Ham;
-    //    defender.name = Ham.name;
-    //    defender.counterAttackPower = 40;
-    //    defender.hp = 110;
-    }   
+    }
 }
 
 charDeath = () =>{
@@ -88,12 +76,13 @@ deathAction = () =>{
 attackAction = () =>{
     defender.hp -= attacker.attackPower;   
     $('#moveResult').html('You hit ' + defender.name + ' for ' + attacker.attackPower + ' points of damage and suffer ' + defender.counterAttackPower + ' points of damage!');
-    attacker.attackPower += 20;
+    attacker.attackPower = Math.floor(attacker.attackPower + (attacker.attackPower * 0.175));
 }
 //script for the opponents attack==========================
 counterAttackAction = () =>{
     attacker.hp -= defender.counterAttackPower;   
 }
+
 
 rules = () =>{
     if(isBattling){
@@ -124,9 +113,9 @@ $('.character').on('click', function(){
         $('#attack').prepend(this);
         isAttackerSelected = true;
 
-            if($('#attack').find('#grimgore').length){
-                console.log('Grimgore')
-                attacker = Grimgore;
+            if($('#attack').find('#sirane').length){
+                console.log('Sirane')
+                attacker = Sirane;
                 attackerHP = attacker.hp;
             }
             else if($('#attack').find('#shatter').length){
@@ -152,7 +141,7 @@ $('.character').on('click', function(){
 
 
 
-//attack event listener
+//attack event listener=====================================
 $('#attackButton').on('click', function(){
     if(isBattling === false){
         return false;

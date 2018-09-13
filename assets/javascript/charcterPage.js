@@ -1,7 +1,7 @@
 //characters
-let Grimgore = {
+let Sirane = {
         name: ['Sirane'],
-        race: 'elfe',
+        race: 'elf',
         age: '200',
         attackPower: 35,
         hp: 300,
