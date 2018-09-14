@@ -4,37 +4,34 @@ let Sirane = {
         race: 'elf',
         age: '200',
         dice: 8,
-        attackPower: 3,
-        dodge: 6,
-        hp: 31,
-        counterAttackPower: 3,
+        attackPower: 2,
+        dodge: 5,
+        hp: 35,
+        counterAttackPower: 1,
         weapon:'Nature',
-        isDefeated: false,
-
 }
 let Shatter = {
         name: 'Shatter',
         age: '40',
         race: 'Human',
         dice: 8,
-        attackPower: 2,
+        attackPower: 3,
         dodge: 3,
-        hp: 32,
+        hp: 37,
         counterAttackPower: 2,
         weapon: 'Staff of Power',
-        isDefeated: false,
 }
 let Mirimoto = {
         name: 'Mirimoto',
         age: '?',
         race: 'Mushroom',
-        dice: 8,
+        dice: 10,
         attackPower: 0,
         dodge: 0,
-        hp: 40,
-        counterAttackPower: 2,
+        hp: 90,
+        counterAttackPower: 1,
         weapon: 'Mushroom',
-        isDefeated: false,
+
 }
 let Ham = {
         name: 'Ham',
@@ -43,8 +40,8 @@ let Ham = {
         dice: 10,
         attackPower: 1,
         dodge: 1,
-        hp: 25,
+        hp: 30,
         counterAttackPower: 1,
         weapon: 'Fists',
-        isDefeated: false,
+
 }

@@ -6,6 +6,12 @@ let isAttackerSelected = false;
 let isBattling = false;
 let attackerHP ='';
 let defendHP ='';
+//======stat hover======= i know its redundant and i coulddve used a repeatable function but at this point i was having trouble with consitancy so i opted for this way===
+    $('#siStats').html(Sirane.name + '<br>' + 'Dice: d' + Sirane.dice + '<br>' + 'Attack Mod: +' + Sirane.attackPower + '<br>' + 'Dodge: ' + Sirane.dodge)
+    $('#shStats').html(Shatter.name + '<br>' + 'Dice: d' + Shatter.dice + '<br>' + 'Attack Mod: +' + Shatter.attackPower + '<br>' + 'Dodge: ' + Shatter.dodge)
+    $('#mStats').html(Mirimoto.name + '<br>' + 'Dice: d' + Mirimoto.dice + '<br>' + 'Attack Mod: +' + Mirimoto.attackPower + '<br>' + 'Dodge: ' + Mirimoto.dodge)
+    $('#hStats').html(Ham.name + '<br>' + 'Dice: d' + Ham.dice + '<br>' + 'Attack Mod: +' + Ham.attackPower + '<br>' + 'Dodge: ' + Ham.dodge)
+
 
 //////////////////=== HOT, HOT, D6 ===////////////////////
 var dice = {
@@ -75,6 +81,7 @@ deathAction = () =>{
         isBattling = false;
         attacker.attackPower++;
         attacker.dodge++;
+        attacker.hp += 4;
         wins++;
         if (wins === 3){
             alert('congradulations champion');

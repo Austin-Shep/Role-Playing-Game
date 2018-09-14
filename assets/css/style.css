@@ -1,15 +1,35 @@
 .character{
     display: inline-block;
-    border: 2px outset black;
+    border: 2px outset dimgray;
     background-color: dimgrey;
     height: 175px;
     border-radius: 2%;
-    margin: auto 2.4%;
-
+    margin: auto 3%;
 }
 .stats{
     text-align: center;
     margin-top: 0;
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.statDisplay{
+    position: absolute;
+    background-color:rgba(210, 193, 193);
+    text-shadow: 1px 1px #ddeeff;
+    margin-top: -175px;
+    margin-left: 100px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .35s ease;
+}
+.character:hover .statDisplay{
+    opacity: 1;
 }
 .hp{
     margin: -2px auto;
@@ -25,10 +45,11 @@ body{
     background-image: url(../images/bg.jpeg);
 }
 .barracks{
-    background-color: rgba(210, 193, 193, .5);
+    background-color: rgba(210, 193, 193, .75);
     height: 350px;
     text-align: center;
     margin: auto 10%;
+    border: 2px outset #def;
     
 }
 hr{
@@ -37,6 +58,8 @@ hr{
 #fightbox{
     display: inline-block;
     /* position: fixed; */
+    border: 2px outset #def;
+    background-color: blanchedalmond;
 }
 #defend{
     position: absolute;
@@ -48,7 +71,7 @@ hr{
     margin-left: 25%;
 }
 #moveSelect{
-    margin-left: 48%
+    margin:auto 47.5%
 }
 #attackButton{
     height: 45px;
@@ -59,8 +82,10 @@ hr{
     width: 74px;
 }
 #moveResult{
-    margin-left: 32.5%;
+    margin: auto;
+    text-align: center;
     width:490px;
+    border: 2px outset #def;
     background-color:  rgba(210, 193, 193, .5);
     padding: 1%;
     display: inline-block;
