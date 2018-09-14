@@ -6,6 +6,16 @@ let isAttackerSelected = false;
 let isBattling = false;
 let attackerHP ='';
 let defendHP ='';
+
+//////////////////=== HOT, HOT, D6 ===////////////////////
+var dice = {
+    sides: 0 ,
+    roll: function () {
+      var randomNumber = Math.floor(Math.random() * this.sides) + 1;
+      return randomNumber;
+    }
+  }
+
 //clean slate============================================
 initialize = () =>{
     attacker = [];
@@ -63,6 +73,8 @@ deathAction = () =>{
         $($('#defend').find('.character')).detach()
         defender = [];
         isBattling = false;
+        attacker.attackPower++;
+        attacker.dodge++;
         wins++;
         if (wins === 3){
             alert('congradulations champion');
@@ -70,19 +82,50 @@ deathAction = () =>{
             alert('choose your next opponent');
         };
     };
-};
+};   
+
 
 //function for attack action===============================
 attackAction = () =>{
-    defender.hp -= attacker.attackPower;   
-    $('#moveResult').html('You hit ' + defender.name + ' for ' + attacker.attackPower + ' points of damage and suffer ' + defender.counterAttackPower + ' points of damage!');
-    attacker.attackPower = Math.floor(attacker.attackPower + (attacker.attackPower * 0.175));
+    dice.sides = attacker.dice;
+    var result = dice.roll();
+    console.log('attack damage: ' + result + '+' + attacker.counterAttackPower);
+    defender.hp -= (result + attacker.attackPower);
+    $('#moveResult').html('You hit ' + defender.name + ' for ' + (result + attacker.attackPower) + ' points of damage!' + '<br>');
+       
+}
+attackConfirm = () =>{
+    dice.sides = 20;
+    var result = dice.roll();
+    console.log('attack confirm: ' + result);
+    if(result <= defender.dodge){
+        $('#moveResult').html('You miss!' + '<br>')
+        return false;
+    }
+    else{
+        attackAction()
+    }
 }
 //script for the opponents attack==========================
 counterAttackAction = () =>{
-    attacker.hp -= defender.counterAttackPower;   
+    dice.sides = defender.dice;
+    var result = dice.roll();
+    console.log('counter attack damage: ' + result + '+' + defender.counterAttackPower);
+    attacker.hp -= (result + defender.counterAttackPower);
+    $('#moveResult').append(defender.name + ' swings back with ' + (result + defender.counterAttackPower) + ' points of damage!')
 }
-
+counterAttackConfirm = () =>{
+    dice.sides = 20;
+    var result = dice.roll();
+    console.log('counter attack confirm: ' + result)
+    if(result <= attacker.dodge){
+        $('#moveResult').append(defender.name + ' misses!')
+     return false;
+    }
+    else{
+        counterAttackAction()
+    }
+};
 
 rules = () =>{
     if(isBattling){
@@ -147,13 +190,13 @@ $('#attackButton').on('click', function(){
         return false;
     }
     else{
-        attackAction();       
+        attackConfirm();       
         deathAction();
         if(isBattling === true){
-        counterAttackAction();
+        counterAttackConfirm();
         }
         healthRewrite();
-        console.log('attack');
+        console.log('==attack==');
     }
     charDeath();
 });
