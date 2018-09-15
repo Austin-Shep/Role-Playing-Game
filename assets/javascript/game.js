@@ -13,7 +13,7 @@ let defendHP ='';
     $('#hStats').html(Ham.name + '<br>' + 'Dice: d' + Ham.dice + '<br>' + 'Attack Mod: +' + Ham.attackPower + '<br>' + 'Dodge: ' + Ham.dodge)
 
 
-//////////////////=== HOT, HOT, D6 ===////////////////////
+                //////////////////=== HOT, HOT, DICE ===////////////////////
 var dice = {
     sides: 0 ,
     roll: function () {
@@ -81,7 +81,7 @@ deathAction = () =>{
         isBattling = false;
         attacker.attackPower++;
         attacker.dodge++;
-        attacker.hp += 4;
+        attacker.hp += 5;
         wins++;
         if (wins === 3){
             alert('congradulations champion');
